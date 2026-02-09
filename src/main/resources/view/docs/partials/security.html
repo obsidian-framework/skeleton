@@ -51,7 +51,7 @@ public class AppUserDetailsService implements UserDetailsService {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">3. Utiliser dans tes controllers</div>
+            <div class="text-gray-400 text-sm mb-3">2. Utiliser dans tes controllers</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@Controller
 public class LoginController extends BaseController {
@@ -114,6 +114,41 @@ private Object adminDashboard(Request req, Response res) {
 private Object profile(Request req, Response res) {
     // Accessible à tous les utilisateurs connectés
     UserDetails user = getLoggedUser(req);
+    return render("profile.html", Map.of("user", user));
+}</code></pre>
+            </div>
+        </div>
+
+        <div>
+            <div class="text-gray-400 text-sm mb-3">Ajouter des champs personnalisés</div>
+            <div class="bg-zinc-950 border border-zinc-800 p-6">
+                <pre class="line-numbers"><code class="language-java">// 1. Créer ton interface custom
+public interface AppUserDetails extends UserDetails {
+    String getEmail();
+    String getIp();
+}
+
+// 2. Adapter vers cette interface
+private AppUserDetails adapt(User user) {
+    if (user == null) return null;
+    return new AppUserDetails() {
+        public Object getId() { return user.getId(); }
+        public String getUsername() { return user.getUsername(); }
+        public String getPassword() { return user.getPassword(); }
+        public String getRole() { return user.getRole(); }
+
+        // Tes champs custom
+        public String getEmail() { return user.getEmail(); }
+        public String getIp() { return user.getIp(); }
+    };
+}
+
+// 3. Utiliser dans les controllers
+@GET("/profile")
+private Object profile(Request req, Response res) {
+    AppUserDetails user = getLoggedUser(req);
+    String email = user.getEmail();  // ✅ Disponible !
+
     return render("profile.html", Map.of("user", user));
 }</code></pre>
             </div>
