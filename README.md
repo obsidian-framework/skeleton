@@ -1,6 +1,6 @@
-# Spark Skeleton
+# Obsidian
 
-Spark Skeleton brings modern development conventions to the Spark Java framework. Built on top of Spark, it adds annotation-based routing, fluent database migrations, middleware system, CSRF protection, authentication, and more — all while keeping the simplicity of a micro-framework.
+Obsidian brings modern development conventions to the Spark Java framework. Built on top of Spark, it adds annotation-based routing, fluent database migrations, middleware system, CSRF protection, authentication, and more — all while keeping the simplicity of a micro-framework.
 
 ## 🎯 Why this project?
 
@@ -33,8 +33,8 @@ Spark Java is an excellent micro-framework, but it lacks modern conventions. Thi
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/kainovaii/spark-skeleton.git
-cd spark-skeleton
+git clone https://github.com/kainovaii/obsidian-skeleton
+cd obsidian-skeleton
 ./build.bat
 ```
 
@@ -49,7 +49,7 @@ cd spark-skeleton
 
 ## 📖 Documentation
 
-Full documentation is available at `https://spark.kainovaii.dev`.
+Full documentation is available at `https://obsidian.kainovaii.dev`.
 
 ## 🤝 Contributing
 

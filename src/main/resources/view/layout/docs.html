@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - Spark Boilerplate</title>
+    <title>Documentation - Obsidian</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
@@ -90,11 +90,13 @@
                 <span>Retour</span>
             </a>
             <div class="flex items-baseline gap-4 mb-6">
+                <h1 class="text-5xl font-bold text-white tracking-tight">Obsidian_</h1>
+                <span class="text-red-500 text-2xl">/</span>
                 <h1 class="text-5xl font-bold text-white tracking-tight">documentation_</h1>
                 <span class="text-red-500 text-2xl">●</span>
             </div>
             <p class="text-gray-400 text-lg max-w-3xl">
-                Tout ce que tu dois savoir pour démarrer avec le boilerplate Spark.
+                Tout ce que tu dois savoir pour démarrer avec Obsidian.
             </p>
         </div>
         <div class="grid lg:grid-cols-4 gap-12">
@@ -116,16 +118,11 @@
             </div>
 
             <div class="lg:col-span-3 space-y-16">
-                {% block content %}
-                <!-- Contenu de la page -->
-                {% endblock %}
+                {% block content %}{% endblock %}
                 <div class="mt-16 pt-8 border-t border-zinc-900">
                     <div class="flex justify-between items-center">
                         <a href="/" class="text-gray-400 hover:text-white transition-colors">
                             ← Retour à l'accueil
-                        </a>
-                        <a href="/docs" class="text-gray-400 hover:text-white transition-colors">
-                            Documentation →
                         </a>
                     </div>
                 </div>
