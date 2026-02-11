@@ -1,22 +1,6 @@
-# Spark Skeleton ⚡
+# Spark Skeleton
 
 Spark Skeleton brings modern development conventions (annotation-based routing, fluent migrations, dependency injection) to the Spark Java framework. No more manually declared routes and raw SQL migrations.
-```java
-@Controller
-public class BlogController extends BaseController {
-    
-    @GET(value = "/blog", name = "blog_index")
-    private Object index(ArticleRepository articleRepo) {
-        List<Article> articles = DB.withConnection(() ->
-            articleRepo.findPublished().stream().toList()
-        );
-        
-        return render("blog/index.html", Map.of(
-            "articles", articles
-        ));
-    }
-}
-```
 
 ## 🎯 Why this project?
 
@@ -54,48 +38,6 @@ cd spark-skeleton
 - **ActiveJDBC** - Lightweight ORM with ActiveRecord pattern
 - **Pebble** - Modern template engine
 - **Maven** - Build & dependency management
-
-## 🔥 Quick Examples
-
-### A controller with injection
-```java
-@Controller
-public class ArticleController extends BaseController {
-    
-    @GET(value = "/articles/:id", name = "articles.show")
-    private Object show(Request req, Response res, ArticleRepository repo) {
-        String id = req.params(":id");
-        Article article = DB.withConnection(() -> repo.findById(id));
-        
-        return render("articles/show.html", Map.of("article", article));
-    }
-}
-```
-
-### A fluent migration
-```java
-public class CreateArticlesTable extends Migration {
-    @Override
-    public void up() {
-        createTable("articles", table -> {
-            table.id();
-            table.string("title").notNull();
-            table.text("content");
-            table.timestamps();
-        });
-    }
-}
-```
-
-### A simple repository
-```java
-@Repository
-public class ArticleRepository {
-    public LazyList<Article> findPublished() {
-        return Article.where("status = ?", 1);
-    }
-}
-```
 
 ## 📖 Documentation
 
