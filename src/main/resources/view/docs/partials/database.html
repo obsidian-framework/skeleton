@@ -1,16 +1,16 @@
 <section id="database">
-    <h2 class="text-3xl font-bold text-white mb-6">Configuration Database</h2>
+    <h2 class="text-3xl font-bold text-white mb-6">Database Configuration</h2>
 
     <div class="space-y-6">
         <div>
-            <div class="text-gray-400 text-sm mb-3">Utilisation dans le code</div>
+            <div class="text-gray-400 text-sm mb-3">Usage in code</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
-                                    <pre class="line-numbers"><code class="language-java">// Toutes les opérations DB doivent être wrapped
+                                    <pre class="line-numbers"><code class="language-java">// All DB operations must be wrapped
 List&lt;Article&gt; articles = DB.withConnection(() ->
     Article.findAll().stream().toList()
 );
 
-// Ou pour plusieurs opérations
+// Or for multiple operations
 DB.withConnection(() -> {
     Article article = new Article();
     article.setTitle("Test");

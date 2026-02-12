@@ -1,13 +1,13 @@
 <section id="models">
-    <h2 class="text-3xl font-bold text-white mb-6">Models ActiveJDBC</h2>
+    <h2 class="text-3xl font-bold text-white mb-6">ActiveJDBC Models</h2>
 
     <p class="text-gray-400 mb-6">
-        Les models utilisent ActiveJDBC, un ORM léger qui suit le pattern ActiveRecord.
+        Models use ActiveJDBC, a lightweight ORM that follows the ActiveRecord pattern.
     </p>
 
     <div class="space-y-6">
         <div>
-            <div class="text-gray-400 text-sm mb-3">Créer un model</div>
+            <div class="text-gray-400 text-sm mb-3">Create a model</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                                     <pre class="line-numbers"><code class="language-java">public class Article extends Model {
 
@@ -41,24 +41,24 @@
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Utilisation</div>
+            <div class="text-gray-400 text-sm mb-3">Usage</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
-                                    <pre class="line-numbers"><code class="language-java">// Créer
+                                    <pre class="line-numbers"><code class="language-java">// Create
 Article article = new Article();
-article.setTitle("Mon titre");
-article.setContent("Mon contenu");
+article.setTitle("My title");
+article.setContent("My content");
 article.saveIt();
 
-// Récupérer
+// Retrieve
 Article article = Article.findById(1);
 LazyList&lt;Article&gt; articles = Article.findAll();
 LazyList&lt;Article&gt; published = Article.where("status = ?", 1);
 
-// Modifier
-article.setTitle("Nouveau titre");
+// Update
+article.setTitle("New title");
 article.saveIt();
 
-// Supprimer
+// Delete
 article.delete();</code></pre>
             </div>
         </div>
@@ -68,12 +68,12 @@ article.delete();</code></pre>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                                     <pre class="line-numbers"><code class="language-java">public class Article extends Model {
 
-    // Un article appartient à un user
+    // An article belongs to a user
     public User getAuthor() {
         return parent(User.class);
     }
 
-    // Un article a plusieurs commentaires
+    // An article has many comments
     public LazyList&lt;Comment&gt; getComments() {
         return get(Comment.class, "article_id = ?", getId());
     }

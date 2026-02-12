@@ -15,7 +15,6 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* Override Prism colors to match our theme */
         code[class*="language-"],
         pre[class*="language-"] {
             color: #d4d4d4;
@@ -37,7 +36,6 @@
             overflow: auto;
         }
 
-        /* Prism color overrides to match our red/purple/blue theme */
         .token.comment { color: #6b7280; }
         .token.keyword { color: #a78bfa; }
         .token.class-name { color: #fcd34d; }
@@ -61,8 +59,15 @@
     </style>
 </head>
 <body class="bg-black text-gray-200 noise">
-    {% block content %}{% endblock %}
-    {{ flash() | raw }}
+
+    <div class="min-h-screen flex items-center justify-center px-6 py-12">
+        <div class="max-w-4xl w-full">
+            {% block content %}{% endblock %}
+            <div class="mt-12 pt-8 border-t border-zinc-900 text-center text-gray-600 text-sm">
+                <p>© 2026 KainoVaii. Developed with passion and ☕ — MIT License</p>
+            </div>
+        </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>

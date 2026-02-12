@@ -1,13 +1,13 @@
 <section id="routing">
-    <h2 class="text-3xl font-bold text-white mb-6">Routing avec annotations</h2>
+    <h2 class="text-3xl font-bold text-white mb-6">Routing with Annotations</h2>
 
     <p class="text-gray-400 mb-6">
-        Fini les routes déclarées manuellement. Utilise les annotations directement sur tes méthodes.
+        No more manually declared routes. Use annotations directly on your methods.
     </p>
 
     <div class="space-y-6">
         <div>
-            <div class="text-gray-400 text-sm mb-3">Annotations disponibles</div>
+            <div class="text-gray-400 text-sm mb-3">Available annotations</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                                     <pre class="line-numbers"><code class="language-java">@GET(value = "/articles", name = "articles.index")
 @POST(value = "/articles", name = "articles.store")
@@ -18,7 +18,7 @@
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Paramètres de route</div>
+            <div class="text-gray-400 text-sm mb-3">Route parameters</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                                     <pre class="line-numbers"><code class="language-java">@GET(value = "/articles/:id", name = "articles.show")
 private Object show(Request req, Response res) {

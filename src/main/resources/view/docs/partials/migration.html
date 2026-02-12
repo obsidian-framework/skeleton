@@ -2,12 +2,12 @@
     <h2 class="text-3xl font-bold text-white mb-6">Migrations</h2>
 
     <p class="text-gray-400 mb-6">
-        Un système de migrations fluide inspiré de Laravel pour gérer ta structure de base de données.
+        A fluent migration system inspired by Laravel to manage your database structure.
     </p>
 
     <div class="space-y-6">
         <div>
-            <div class="text-gray-400 text-sm mb-3">Créer une table</div>
+            <div class="text-gray-400 text-sm mb-3">Create a table</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                                     <pre class="line-numbers"><code class="language-java">public class CreateArticlesTable extends Migration {
 
@@ -32,7 +32,7 @@
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Types de colonnes disponibles</div>
+            <div class="text-gray-400 text-sm mb-3">Available column types</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                                     <pre class="line-numbers"><code class="language-java">table.id()                              // PRIMARY KEY AUTO_INCREMENT
 table.string("name")                    // VARCHAR(255)
@@ -50,7 +50,7 @@ table.timestamps()                      // created_at + updated_at</code></pre>
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Modificateurs</div>
+            <div class="text-gray-400 text-sm mb-3">Modifiers</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                                     <pre class="line-numbers"><code class="language-java">table.string("email").notNull()
 table.integer("count").defaultValue(0)

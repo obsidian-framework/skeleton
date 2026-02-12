@@ -2,12 +2,12 @@
     <h2 class="text-3xl font-bold text-white mb-6">Flash Messages</h2>
 
     <p class="text-gray-400 mb-6">
-        Affiche des notifications temporaires après des actions utilisateur. Aucune dépendance externe requise.
+        Display temporary notifications after user actions. No external dependencies required.
     </p>
 
     <div class="space-y-6">
         <div>
-            <div class="text-gray-400 text-sm mb-3">Utilisation dans un controller</div>
+            <div class="text-gray-400 text-sm mb-3">Usage in a controller</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@Post("/login")
 public Object login(Request req, Response res)
@@ -25,24 +25,24 @@ public Object login(Request req, Response res)
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Types de notifications disponibles</div>
+            <div class="text-gray-400 text-sm mb-3">Available notification types</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
-                <pre class="line-numbers"><code class="language-java">// Success (vert/orange)
+                <pre class="line-numbers"><code class="language-java">// Success (green/orange)
 redirectWithFlash(req, res, "success", "Operation completed!", "/");
 
-// Error (rouge)
+// Error (red)
 redirectWithFlash(req, res, "error", "Something went wrong", "/");
 
-// Info (bleu)
+// Info (blue)
 redirectWithFlash(req, res, "info", "Check your email", "/");
 
-// Warning (jaune/orange)
+// Warning (yellow/orange)
 redirectWithFlash(req, res, "warning", "Changes require restart", "/");</code></pre>
             </div>
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Affichage dans le template</div>
+            <div class="text-gray-400 text-sm mb-3">Display in template</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-twig">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -59,20 +59,20 @@ redirectWithFlash(req, res, "warning", "Changes require restart", "/");</code></
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Configuration personnalisée (optionnel)</div>
+            <div class="text-gray-400 text-sm mb-3">Custom configuration (optional)</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
-                <pre class="line-numbers"><code class="language-java">// Dans Main.java
+                <pre class="line-numbers"><code class="language-java">// In Main.java
 public static void configureFlash()
 {
-    // Changer la durée (en ms)
+    // Change duration (in ms)
     FlashConfig.setDuration(5000);
 
-    // Changer la position
+    // Change position
     FlashConfig.setPosition("top-right");
     // Options: top-right, top-left, bottom-right,
     //          bottom-left, top-center, bottom-center
 
-    // CSS personnalisé
+    // Custom CSS
     FlashConfig.setCustomCSS("""
         .flash-notification {
             border-radius: 1rem;

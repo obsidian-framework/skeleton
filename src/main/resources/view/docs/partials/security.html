@@ -2,13 +2,13 @@
     <h2 class="text-3xl font-bold text-white mb-6">Security & Authentication</h2>
 
     <p class="text-gray-400 mb-6">
-        Le système d'authentification est basé sur <span class="text-white">UserDetailsService</span>,
-        une abstraction qui te laisse libre d'organiser ton modèle User comme tu veux.
+        The authentication system is based on <span class="text-white">UserDetailsService</span>,
+        an abstraction that lets you organize your User model however you want.
     </p>
 
     <div class="space-y-6">
         <div>
-            <div class="text-gray-400 text-sm mb-3">1. Créer ton UserDetailsService</div>
+            <div class="text-gray-400 text-sm mb-3">1. Create your UserDetailsService</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@UserDetailsServiceImpl
 public class AppUserDetailsService implements UserDetailsService {
@@ -51,7 +51,7 @@ public class AppUserDetailsService implements UserDetailsService {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">2. Utiliser dans tes controllers</div>
+            <div class="text-gray-400 text-sm mb-3">2. Use in your controllers</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@Controller
 public class LoginController extends BaseController {
@@ -83,36 +83,36 @@ public class LoginController extends BaseController {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Méthodes disponibles dans BaseController</div>
+            <div class="text-gray-400 text-sm mb-3">Available methods in BaseController</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
-                <pre class="line-numbers"><code class="language-java">// Authentification
-login(username, password, session)  // Authentifie et crée la session
-logout(session)                     // Déconnecte l'utilisateur
+                <pre class="line-numbers"><code class="language-java">// Authentication
+login(username, password, session)  // Authenticate and create session
+logout(session)                     // Log out the user
 
-// Vérifications
-isLogged(req)                       // Vérifie si connecté
-hasRole(req, "ADMIN")               // Vérifie un rôle
-requireLogin(req, res)              // Force la connexion (redirige sinon)
+// Checks
+isLogged(req)                       // Check if logged in
+hasRole(req, "ADMIN")               // Check a role
+requireLogin(req, res)              // Force login (redirect otherwise)
 
-// Récupération
-getLoggedUser(req)                  // Récupère le UserDetails</code></pre>
+// Retrieval
+getLoggedUser(req)                  // Get the UserDetails</code></pre>
             </div>
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Protection par rôle</div>
+            <div class="text-gray-400 text-sm mb-3">Role-based protection</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@HasRole("ADMIN")
 @GET("/admin/dashboard")
 private Object adminDashboard(Request req, Response res) {
-    // Accessible uniquement aux ADMIN
+    // Accessible only to ADMIN
     return render("admin/dashboard.html", Map.of());
 }
 
 @HasRole("DEFAULT")
 @GET("/profile")
 private Object profile(Request req, Response res) {
-    // Accessible à tous les utilisateurs connectés
+    // Accessible to all logged-in users
     UserDetails user = getLoggedUser(req);
     return render("profile.html", Map.of("user", user));
 }</code></pre>
@@ -120,15 +120,15 @@ private Object profile(Request req, Response res) {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Ajouter des champs personnalisés</div>
+            <div class="text-gray-400 text-sm mb-3">Add custom fields</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
-                <pre class="line-numbers"><code class="language-java">// 1. Créer ton interface custom
+                <pre class="line-numbers"><code class="language-java">// 1. Create your custom interface
 public interface AppUserDetails extends UserDetails {
     String getEmail();
     String getIp();
 }
 
-// 2. Adapter vers cette interface
+// 2. Adapt to this interface
 private AppUserDetails adapt(User user) {
     if (user == null) return null;
     return new AppUserDetails() {
@@ -137,17 +137,17 @@ private AppUserDetails adapt(User user) {
         public String getPassword() { return user.getPassword(); }
         public String getRole() { return user.getRole(); }
 
-        // Tes champs custom
+        // Your custom fields
         public String getEmail() { return user.getEmail(); }
         public String getIp() { return user.getIp(); }
     };
 }
 
-// 3. Utiliser dans les controllers
+// 3. Use in controllers
 @GET("/profile")
 private Object profile(Request req, Response res) {
     AppUserDetails user = getLoggedUser(req);
-    String email = user.getEmail();  // ✅ Disponible !
+    String email = user.getEmail();  // ✅ Available!
 
     return render("profile.html", Map.of("user", user));
 }</code></pre>
@@ -155,13 +155,13 @@ private Object profile(Request req, Response res) {
         </div>
 
         <div class="bg-zinc-900 border border-zinc-800 p-6 rounded">
-            <div class="text-blue-400 mb-2">💡 Astuce</div>
+            <div class="text-blue-400 mb-2">💡 Tip</div>
             <p class="text-gray-400 text-sm mb-3">
-                L'annotation <span class="text-white">@UserDetailsServiceImpl</span> permet
-                au framework de détecter automatiquement ton implémentation. Pas besoin de config manuelle !
+                The <span class="text-white">@UserDetailsServiceImpl</span> annotation allows
+                the framework to automatically detect your implementation. No manual configuration needed!
             </p>
             <p class="text-gray-400 text-sm">
-                Le rôle <span class="text-white">"DEFAULT"</span> signifie "n'importe quel utilisateur connecté".
+                The <span class="text-white">"DEFAULT"</span> role means "any logged-in user".
             </p>
         </div>
     </div>

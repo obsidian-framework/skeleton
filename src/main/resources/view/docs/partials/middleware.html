@@ -2,12 +2,12 @@
     <h2 class="text-3xl font-bold text-white mb-6">Middleware System</h2>
 
     <p class="text-gray-400 mb-6">
-        Intercepte les requêtes avant et après l'exécution des controllers avec des annotations simples.
+        Intercept requests before and after controller execution with simple annotations.
     </p>
 
     <div class="space-y-6">
         <div>
-            <div class="text-gray-400 text-sm mb-3">Utilisation basique</div>
+            <div class="text-gray-400 text-sm mb-3">Basic usage</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@Before(LoggingMiddleware.class)
 @GET(value = "/dashboard", name = "dashboard")
@@ -18,7 +18,7 @@ private Object dashboard(Request req, Response res) {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Chaîner plusieurs middlewares</div>
+            <div class="text-gray-400 text-sm mb-3">Chain multiple middlewares</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@Before({CorsMiddleware.class, ApiKeyMiddleware.class, RateLimitMiddleware.class})
 @GET(value = "/api/data", name = "api.data")
@@ -29,59 +29,59 @@ private Object data(Request req, Response res) {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Before et After</div>
+            <div class="text-gray-400 text-sm mb-3">Before and After</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@Before(TimingMiddleware.class)
 @After(TimingMiddleware.class)
 @GET(value = "/profile", name = "profile")
 private Object profile(Request req, Response res) {
-    // TimingMiddleware mesure le temps d'exécution
+    // TimingMiddleware measures execution time
     return render("profile.html", Map.of());
 }</code></pre>
             </div>
         </div>
 
         <div class="bg-zinc-900 border border-zinc-800 p-6 rounded mb-6">
-            <div class="text-yellow-500 mb-3">📦 Middlewares Built-in</div>
+            <div class="text-yellow-500 mb-3">📦 Built-in Middlewares</div>
             <div class="space-y-4 text-sm">
                 <div>
                     <div class="text-white mb-1">LoggingMiddleware</div>
-                    <div class="text-gray-400">Log automatique de chaque requête avec IP et User-Agent.</div>
-                    <div class="text-gray-500 text-xs mt-1">Utile pour: Debug, monitoring, audit trail</div>
+                    <div class="text-gray-400">Automatic logging of each request with IP and User-Agent.</div>
+                    <div class="text-gray-500 text-xs mt-1">Useful for: Debugging, monitoring, audit trail</div>
                 </div>
                 <div>
                     <div class="text-white mb-1">CorsMiddleware</div>
-                    <div class="text-gray-400">Ajoute les headers CORS pour autoriser les requêtes cross-origin.</div>
-                    <div class="text-gray-500 text-xs mt-1">Utile pour: APIs publiques, frontends séparés, apps mobiles</div>
+                    <div class="text-gray-400">Adds CORS headers to allow cross-origin requests.</div>
+                    <div class="text-gray-500 text-xs mt-1">Useful for: Public APIs, separate frontends, mobile apps</div>
                 </div>
                 <div>
                     <div class="text-white mb-1">RateLimitMiddleware</div>
-                    <div class="text-gray-400">Limite à 100 requêtes/minute par IP. Retourne 429 si dépassé.</div>
-                    <div class="text-gray-500 text-xs mt-1">Utile pour: Protection anti-spam, anti-DDoS, endpoints publics</div>
+                    <div class="text-gray-400">Limits to 100 requests/minute per IP. Returns 429 if exceeded.</div>
+                    <div class="text-gray-500 text-xs mt-1">Useful for: Anti-spam protection, anti-DDoS, public endpoints</div>
                 </div>
                 <div>
                     <div class="text-white mb-1">TimingMiddleware</div>
-                    <div class="text-gray-400">Mesure le temps d'exécution et ajoute le header X-Response-Time.</div>
-                    <div class="text-gray-500 text-xs mt-1">Utile pour: Optimisation performance, détection de routes lentes</div>
+                    <div class="text-gray-400">Measures execution time and adds the X-Response-Time header.</div>
+                    <div class="text-gray-500 text-xs mt-1">Useful for: Performance optimization, detecting slow routes</div>
                 </div>
                 <div>
                     <div class="text-white mb-1">ApiKeyMiddleware</div>
-                    <div class="text-gray-400">Vérifie la présence du header X-API-Key. Retourne 401 si invalide.</div>
-                    <div class="text-gray-500 text-xs mt-1">Utile pour: Sécuriser les APIs, authentification simple</div>
+                    <div class="text-gray-400">Verifies the presence of the X-API-Key header. Returns 401 if invalid.</div>
+                    <div class="text-gray-500 text-xs mt-1">Useful for: Securing APIs, simple authentication</div>
                 </div>
             </div>
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Exemple: Sécuriser une API</div>
+            <div class="text-gray-400 text-sm mb-3">Example: Securing an API</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">@Before({CorsMiddleware.class, ApiKeyMiddleware.class, RateLimitMiddleware.class})
 @GET(value = "/api/users", name = "api.users")
 private Object users(Request req, Response res) {
-    // 1. CORS headers ajoutés
-    // 2. API Key validée (sinon 401)
-    // 3. Rate limit vérifié (sinon 429)
-    // 4. Controller exécuté
+    // 1. CORS headers added
+    // 2. API Key validated (otherwise 401)
+    // 3. Rate limit checked (otherwise 429)
+    // 4. Controller executed
 
     return "{ \"users\": [] }";
 }</code></pre>
@@ -89,7 +89,7 @@ private Object users(Request req, Response res) {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Créer un middleware custom</div>
+            <div class="text-gray-400 text-sm mb-3">Create a custom middleware</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-java">public class MaintenanceMiddleware implements Middleware {
 
@@ -104,7 +104,7 @@ private Object users(Request req, Response res) {
     }
 }
 
-// Utilisation
+// Usage
 @Before(MaintenanceMiddleware.class)
 @GET("/dashboard")
 private Object dashboard(Request req, Response res) {
@@ -114,7 +114,7 @@ private Object dashboard(Request req, Response res) {
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Headers ajoutés automatiquement</div>
+            <div class="text-gray-400 text-sm mb-3">Headers added automatically</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-bash"># TimingMiddleware
 X-Response-Time: 42ms
@@ -131,7 +131,7 @@ Access-Control-Allow-Headers: Content-Type, Authorization, X-CSRF-TOKEN</code></
         </div>
 
         <div>
-            <div class="text-gray-400 text-sm mb-3">Logs générés (LoggingMiddleware)</div>
+            <div class="text-gray-400 text-sm mb-3">Generated logs (LoggingMiddleware)</div>
             <div class="bg-zinc-950 border border-zinc-800 p-6">
                 <pre class="line-numbers"><code class="language-bash">INFO: GET /articles - IP: 192.168.1.1 - User-Agent: Mozilla/5.0...
 INFO: POST /api/users - IP: 10.0.0.5 - User-Agent: PostmanRuntime/7.26.8
@@ -140,13 +140,13 @@ INFO: DELETE /articles/42 - IP: 192.168.1.1 - User-Agent: Mozilla/5.0...</code><
         </div>
 
         <div class="bg-zinc-900 border border-zinc-800 p-6 rounded">
-            <div class="text-blue-400 mb-2">💡 Ordre d'exécution</div>
+            <div class="text-blue-400 mb-2">💡 Execution Order</div>
             <ul class="text-gray-400 text-sm space-y-1">
-                <li>• @Before middlewares s'exécutent dans l'ordre du tableau</li>
-                <li>• Controller s'exécute ensuite</li>
-                <li>• @After middlewares s'exécutent après le controller</li>
-                <li>• Si un middleware lance une exception, l'exécution s'arrête</li>
-                <li>• Les middlewares sont instanciés une seule fois (singleton)</li>
+                <li>• @Before middlewares execute in array order</li>
+                <li>• Controller executes next</li>
+                <li>• @After middlewares execute after the controller</li>
+                <li>• If a middleware throws an exception, execution stops</li>
+                <li>• Middlewares are instantiated once (singleton)</li>
             </ul>
         </div>
     </div>
